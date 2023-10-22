@@ -26,16 +26,11 @@ class TestFile:
             contents = _f.read()
         assert contents == "1"
 
-        def teardown(self):
-            try:
-                os.remove("/tmp/done")
-            except OSError:
-                pass
-
-        def test_done_file(self):
-            with open("/tmp/done") as _f:
-                contents = _f.read()
-            assert contents == "1"
+    def teardown_method(self):
+        try:
+            os.remove("/tmp/done")
+        except OSError:
+            pass
 
 
 @pytest.fixture
